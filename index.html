@@ -520,6 +520,161 @@
       margin-top: 6px;
     }
 
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 3, 10, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), var(--bg-section));
+      border: 1px solid rgba(148, 163, 255, 0.4);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      max-width: 520px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .modal-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-sub);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--text-main);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-label .required {
+      color: var(--accent);
+      margin-left: 4px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 255, 0.3);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(78, 163, 255, 0.15);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-select {
+      cursor: pointer;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #0b1020;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.3);
+      transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 56px rgba(56, 189, 248, 0.36);
+      filter: brightness(1.03);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+
+    .form-message.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+
+    .form-message.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+
     /* Footer */
 
     .footer {
@@ -636,7 +791,7 @@
             </div>
 
             <div class="hero-buttons">
-              <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+              <button class="btn-primary" onclick="openBookingModal()">
                 申請一對一／團隊試用
               </button>
               <button class="btn-ghost" onclick="document.getElementById('usecases').scrollIntoView({behavior:'smooth'})">
@@ -838,7 +993,7 @@
               這會是一個開始，而不是一句漂亮的口號。
             </p>
             <div class="cta-actions">
-              <button class="btn-primary">
+              <button class="btn-primary" onclick="openBookingModal()">
                 預約一對一／團隊體驗
               </button>
               <button class="btn-ghost">
@@ -866,11 +1021,152 @@
   </footer>
 </div>
 
+<!-- 報名表單模態框 -->
+<div id="bookingModal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title">預約一對一／團隊體驗</h3>
+      <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+    </div>
+    <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">
+          姓名 <span class="required">*</span>
+        </label>
+        <input type="text" class="form-input" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          電子郵件 <span class="required">*</span>
+        </label>
+        <input type="email" class="form-input" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          聯絡電話
+        </label>
+        <input type="tel" class="form-input" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          體驗類型 <span class="required">*</span>
+        </label>
+        <select class="form-select" name="type" required>
+          <option value="">請選擇</option>
+          <option value="一對一體驗">一對一體驗</option>
+          <option value="團隊體驗">團隊體驗</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          目前角色／身份
+        </label>
+        <select class="form-select" name="role">
+          <option value="">請選擇</option>
+          <option value="個人成長者">個人成長者</option>
+          <option value="第一線主管">第一線主管</option>
+          <option value="中高階主管">中高階主管</option>
+          <option value="創業者">創業者</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          想了解或解決的問題
+        </label>
+        <textarea class="form-textarea" name="message" placeholder="請簡述您目前遇到的挑戰或想探索的主題..."></textarea>
+      </div>
+
+      <button type="submit" class="form-submit" id="submitBtn">
+        送出報名表單
+      </button>
+
+      <div id="formMessage" class="form-message"></div>
+    </form>
+  </div>
+</div>
+
 <script>
   // 動態年份
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 開啟報名表單模態框
+  function openBookingModal() {
+    document.getElementById('bookingModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // 關閉報名表單模態框
+  function closeBookingModal() {
+    document.getElementById('bookingModal').classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('bookingForm').reset();
+    document.getElementById('formMessage').style.display = 'none';
+  }
+
+  // 點擊模態框背景關閉
+  document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeBookingModal();
+    }
+  });
+
+  // 處理表單提交
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    
+    // 取得表單資料
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone') || '未提供',
+      type: formData.get('type'),
+      role: formData.get('role') || '未提供',
+      message: formData.get('message') || '未提供'
+    };
+
+    // 禁用提交按鈕
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送出中...';
+
+    // 使用 mailto: 發送郵件
+    const subject = encodeURIComponent(`【自我成長領導力】預約體驗報名 - ${data.name}`);
+    const body = encodeURIComponent(
+      `姓名：${data.name}\n` +
+      `電子郵件：${data.email}\n` +
+      `聯絡電話：${data.phone}\n` +
+      `體驗類型：${data.type}\n` +
+      `目前角色：${data.role}\n` +
+      `想了解或解決的問題：\n${data.message}`
+    );
+    
+    const mailtoLink = `mailto:samuelhou@bethelight.org.tw?subject=${subject}&body=${body}`;
+    
+    // 開啟郵件客戶端
+    window.location.href = mailtoLink;
+    
+    // 顯示成功訊息
+    setTimeout(() => {
+      formMessage.className = 'form-message success';
+      formMessage.textContent = '✓ 已開啟郵件客戶端，請確認並發送郵件。';
+      formMessage.style.display = 'block';
+      
+      // 3秒後關閉模態框
+      setTimeout(() => {
+        closeBookingModal();
+      }, 3000);
+    }, 500);
+  }
 </script>
 </body>
 </html>
-
-
