@@ -1650,7 +1650,7 @@
                  style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none;">
                 💬 與侯勝宗教授 AI 互動
               </a>
-              <button class="btn-ghost">
+              <button class="btn-ghost" onclick="openProgramOverview()">
                 索取方案簡介 PDF
               </button>
             </div>
@@ -1742,6 +1742,152 @@
 
       <div id="formMessage" class="form-message"></div>
     </form>
+  </div>
+</div>
+
+<!-- 方案簡介模態框 -->
+<div id="programOverviewModal" class="modal-overlay">
+  <div class="modal" style="max-width: 800px; max-height: 90vh;">
+    <div class="modal-header">
+      <h3 class="modal-title">自我成長領導力方案簡介</h3>
+      <button class="modal-close" onclick="closeProgramOverview()">&times;</button>
+    </div>
+    <div id="programOverviewContent" style="padding: 0 8px 24px; overflow-y: auto; max-height: calc(90vh - 100px);">
+      <div style="color: var(--text-main); line-height: 1.8;">
+        
+        <div style="margin-bottom: 32px;">
+          <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 16px; color: var(--accent);">
+            Self-Growth Leadership Program<br>
+            <span style="font-size: 1.2rem; color: var(--text-sub); font-weight: 400;">Professional Overview</span>
+          </h2>
+          <p style="color: var(--text-sub); font-size: 1.05rem; margin-bottom: 0;">
+            A modern framework designed to help individuals develop clarity, emotional stability, and intentional action—rooted in real field experience in caregiving, social innovation, mobility, and education.
+          </p>
+        </div>
+
+        <div style="margin-bottom: 32px; padding: 20px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border-left: 3px solid var(--accent);">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">Program Purpose</h3>
+          <p style="color: var(--text-sub); margin: 0;">
+            The Self-Growth Leadership Program helps individuals build the inner capacity necessary to lead themselves with awareness, stability, and purpose before leading others.
+          </p>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: var(--text-main);">Core Philosophy</h3>
+          <div style="display: grid; gap: 16px;">
+            <div style="padding: 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border: 1px solid rgba(148, 163, 255, 0.2);">
+              <strong style="color: var(--accent); display: block; margin-bottom: 6px;">1. Self-Awareness</strong>
+              <span style="color: var(--text-sub);">Understanding personal patterns, triggers, strengths, and internal narratives.</span>
+            </div>
+            <div style="padding: 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border: 1px solid rgba(148, 163, 255, 0.2);">
+              <strong style="color: var(--accent); display: block; margin-bottom: 6px;">2. Self-Management</strong>
+              <span style="color: var(--text-sub);">Developing emotional resilience, stress tolerance, and inner stability.</span>
+            </div>
+            <div style="padding: 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border: 1px solid rgba(148, 163, 255, 0.2);">
+              <strong style="color: var(--accent); display: block; margin-bottom: 6px;">3. Purposeful Action</strong>
+              <span style="color: var(--text-sub);">Turning clarity into aligned, sustainable action.</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: var(--text-main);">Program Structure</h3>
+          <div style="display: grid; gap: 14px;">
+            <div style="padding: 14px 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border-left: 3px solid var(--accent);">
+              <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">Module 1 — Self-Discovery</strong>
+              <span style="color: var(--text-sub); font-size: 0.95rem;">Values exploration, strengths mapping, life direction.</span>
+            </div>
+            <div style="padding: 14px 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border-left: 3px solid var(--accent);">
+              <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">Module 2 — Emotional Intelligence</strong>
+              <span style="color: var(--text-sub); font-size: 0.95rem;">Emotional awareness, stress navigation, grounded communication.</span>
+            </div>
+            <div style="padding: 14px 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border-left: 3px solid var(--accent);">
+              <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">Module 3 — Decision & Action</strong>
+              <span style="color: var(--text-sub); font-size: 0.95rem;">Priority systems, micro-habits, sustainable growth rhythms.</span>
+            </div>
+            <div style="padding: 14px 16px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border-left: 3px solid var(--accent);">
+              <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">Module 4 — Integration & Growth</strong>
+              <span style="color: var(--text-sub); font-size: 0.95rem;">Continuous reflection, limiting beliefs, long-term growth systems.</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--text-main);">Learning Outcomes</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;">
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Greater emotional awareness and regulation
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Clear personal direction based on values
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Improved communication and relational clarity
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Practical systems for sustained personal growth
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Confidence in navigating transitions and uncertainty
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom: 32px; padding: 20px; background: rgba(15, 23, 42, 0.6); border-radius: 12px;">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: var(--text-main);">Who This Is For</h3>
+          <p style="color: var(--text-sub); margin: 0;">
+            Students, young professionals, emerging leaders, and anyone seeking clarity, stability, and a structured approach to personal growth.
+          </p>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--text-main);">Deliverables</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;">
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Self-Leadership Guidebook
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Reflection Toolset
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              30-Day Growth Roadmap
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Emotional grounding practices
+            </li>
+            <li style="padding-left: 24px; position: relative; color: var(--text-sub);">
+              <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+              Personal direction & values mapping toolkit
+            </li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom: 24px; padding: 24px; background: radial-gradient(circle at top left, rgba(78, 163, 255, 0.1), rgba(15, 23, 42, 0.8)); border-radius: 12px; border: 1px solid rgba(148, 163, 255, 0.3);">
+          <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: var(--accent);">A Message From the Creator</h3>
+          <p style="color: var(--text-sub); margin: 0; font-style: italic; line-height: 1.8;">
+            This program reflects over a decade of fieldwork and education practice. It is built not from theory alone, but from real conversations with people navigating pressure, change, and self-doubt. Growth begins when we return to ourselves—gently, steadily, and with clarity.
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <div style="padding: 20px; border-top: 1px solid rgba(148, 163, 255, 0.2); display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <button class="btn-primary" onclick="downloadProgramPDF()" style="display: inline-flex; align-items: center; gap: 6px;">
+        📥 下載 PDF
+      </button>
+      <button class="btn-ghost" onclick="printProgramOverview()">
+        🖨️ 列印
+      </button>
+    </div>
   </div>
 </div>
 
@@ -1889,6 +2035,161 @@
         closeBookingModal();
       }, 3000);
     }, 500);
+  }
+
+  // 開啟方案簡介模態框
+  function openProgramOverview() {
+    document.getElementById('programOverviewModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // 關閉方案簡介模態框
+  function closeProgramOverview() {
+    document.getElementById('programOverviewModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // 點擊模態框背景關閉
+  document.getElementById('programOverviewModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeProgramOverview();
+    }
+  });
+
+  // 下載 PDF
+  function downloadProgramPDF() {
+    const content = document.getElementById('programOverviewContent').innerHTML;
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html lang="zh-Hant">
+      <head>
+        <meta charset="UTF-8">
+        <title>自我成長領導力方案簡介</title>
+        <style>
+          @media print {
+            @page { margin: 2cm; }
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", system-ui, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+          }
+          h2 { color: #4ea3ff; font-size: 1.8rem; margin-bottom: 16px; }
+          h3 { color: #333; font-size: 1.3rem; margin-top: 32px; margin-bottom: 16px; }
+          p { color: #666; margin-bottom: 16px; }
+          ul { list-style: none; padding-left: 0; }
+          li { padding-left: 24px; position: relative; margin-bottom: 10px; }
+          li::before { content: "•"; position: absolute; left: 0; color: #4ea3ff; }
+          .highlight-box {
+            background: #f5f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #4ea3ff;
+            margin: 20px 0;
+          }
+          .module-item {
+            background: #f9fafb;
+            padding: 14px 16px;
+            border-radius: 8px;
+            border-left: 3px solid #4ea3ff;
+            margin-bottom: 12px;
+          }
+        </style>
+      </head>
+      <body>
+        <h2>Self-Growth Leadership Program<br>
+        <span style="font-size: 1.2rem; color: #666; font-weight: 400;">Professional Overview</span></h2>
+        <p style="font-size: 1.05rem; color: #666;">
+          A modern framework designed to help individuals develop clarity, emotional stability, and intentional action—rooted in real field experience in caregiving, social innovation, mobility, and education.
+        </p>
+
+        <div class="highlight-box">
+          <h3>Program Purpose</h3>
+          <p>The Self-Growth Leadership Program helps individuals build the inner capacity necessary to lead themselves with awareness, stability, and purpose before leading others.</p>
+        </div>
+
+        <h3>Core Philosophy</h3>
+        <div class="module-item">
+          <strong style="color: #4ea3ff;">1. Self-Awareness</strong><br>
+          Understanding personal patterns, triggers, strengths, and internal narratives.
+        </div>
+        <div class="module-item">
+          <strong style="color: #4ea3ff;">2. Self-Management</strong><br>
+          Developing emotional resilience, stress tolerance, and inner stability.
+        </div>
+        <div class="module-item">
+          <strong style="color: #4ea3ff;">3. Purposeful Action</strong><br>
+          Turning clarity into aligned, sustainable action.
+        </div>
+
+        <h3>Program Structure</h3>
+        <div class="module-item">
+          <strong>Module 1 — Self-Discovery</strong><br>
+          Values exploration, strengths mapping, life direction.
+        </div>
+        <div class="module-item">
+          <strong>Module 2 — Emotional Intelligence</strong><br>
+          Emotional awareness, stress navigation, grounded communication.
+        </div>
+        <div class="module-item">
+          <strong>Module 3 — Decision & Action</strong><br>
+          Priority systems, micro-habits, sustainable growth rhythms.
+        </div>
+        <div class="module-item">
+          <strong>Module 4 — Integration & Growth</strong><br>
+          Continuous reflection, limiting beliefs, long-term growth systems.
+        </div>
+
+        <h3>Learning Outcomes</h3>
+        <ul>
+          <li>Greater emotional awareness and regulation</li>
+          <li>Clear personal direction based on values</li>
+          <li>Improved communication and relational clarity</li>
+          <li>Practical systems for sustained personal growth</li>
+          <li>Confidence in navigating transitions and uncertainty</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h3>Who This Is For</h3>
+          <p>Students, young professionals, emerging leaders, and anyone seeking clarity, stability, and a structured approach to personal growth.</p>
+        </div>
+
+        <h3>Deliverables</h3>
+        <ul>
+          <li>Self-Leadership Guidebook</li>
+          <li>Reflection Toolset</li>
+          <li>30-Day Growth Roadmap</li>
+          <li>Emotional grounding practices</li>
+          <li>Personal direction & values mapping toolkit</li>
+        </ul>
+
+        <div class="highlight-box" style="background: #f0f4ff; border-left-color: #4ea3ff;">
+          <h3 style="color: #4ea3ff;">A Message From the Creator</h3>
+          <p style="font-style: italic;">
+            This program reflects over a decade of fieldwork and education practice. It is built not from theory alone, but from real conversations with people navigating pressure, change, and self-doubt. Growth begins when we return to ourselves—gently, steadily, and with clarity.
+          </p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #999; font-size: 0.9rem;">
+          <p>© ${new Date().getFullYear()} 自我成長領導力 · Inner Clarity, Outer Impact</p>
+          <p>侯勝宗教授 · 逢甲大學社會創新暨永續碩士在職學位學程</p>
+        </div>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => {
+      printWindow.print();
+    }, 250);
+  }
+
+  // 列印方案簡介
+  function printProgramOverview() {
+    downloadProgramPDF();
   }
 </script>
 </body>
