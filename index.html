@@ -44,6 +44,8 @@
     img {
       max-width: 100%;
       display: block;
+      height: auto;
+      object-fit: cover;
     }
 
     a {
@@ -160,7 +162,10 @@
     /* Hero */
 
     .hero {
-      padding: 72px 0 72px;
+      padding: 100px 0 80px;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
     }
 
     .hero-grid {
@@ -192,18 +197,112 @@
     }
 
     .hero-title {
-      font-size: clamp(2.2rem, 4vw, 2.9rem);
+      font-size: clamp(3.8rem, 8vw, 7rem);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-weight: 700;
-      margin: 0 0 16px;
+      font-weight: 900;
+      margin: 0 0 32px;
+      line-height: 1.05;
+      position: relative;
+      display: block;
+      background: linear-gradient(135deg, 
+        #ffffff 0%, 
+        #d1d5ff 15%, 
+        #a9b4d5 30%, 
+        #4ea3ff 50%, 
+        #7dd3fc 70%, 
+        #a9b4d5 85%, 
+        #ffffff 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.8s ease-out, gradientShift 10s ease infinite;
+      filter: drop-shadow(0 0 40px rgba(78, 163, 255, 0.5)) 
+              drop-shadow(0 0 80px rgba(78, 163, 255, 0.3))
+              drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+      text-shadow: 0 0 60px rgba(78, 163, 255, 0.4);
+    }
+
+    .hero-title::before {
+      content: '從自我覺察，到穩定領導';
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      font-size: clamp(3.8rem, 8vw, 7rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 900;
+      line-height: 1.05;
+      background: linear-gradient(135deg, rgba(78, 163, 255, 0.4) 0%, rgba(125, 211, 252, 0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(25px);
+      opacity: 0.7;
+      transform: translate(6px, 6px);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      left: -5%;
+      top: 50%;
+      width: 110%;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(78, 163, 255, 0.2) 15%, 
+        rgba(125, 211, 252, 0.6) 50%, 
+        rgba(78, 163, 255, 0.2) 85%, 
+        transparent 100%);
+      transform: translateY(-50%);
+      z-index: -2;
+      animation: shimmer 4s ease-in-out infinite;
+      border-radius: 2px;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes shimmer {
+      0%, 100% {
+        opacity: 0.4;
+        transform: translateY(-50%) translateX(-30px) scaleX(0.8);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translateY(-50%) translateX(30px) scaleX(1.2);
+      }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        opacity: 0.5;
+        filter: blur(25px);
+      }
+      50% {
+        opacity: 0.8;
+        filter: blur(30px);
+      }
     }
 
     .hero-subtitle {
-      font-size: 1.1rem;
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
       color: var(--text-sub);
-      max-width: 30rem;
-      margin-bottom: 24px;
+      max-width: 32rem;
+      margin-bottom: 32px;
+      line-height: 1.8;
+      font-weight: 400;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
     .hero-meta {
@@ -274,6 +373,7 @@
 
     .hero-visual {
       position: relative;
+      animation: fadeIn 1s ease-out 0.4s both;
     }
 
     .hero-card {
@@ -283,6 +383,13 @@
       background: radial-gradient(circle at top, #1f2937, #020617);
       border: 1px solid rgba(148, 163, 255, 0.32);
       box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: scaleIn 0.8s ease-out 0.6s both;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 100px rgba(78, 163, 255, 0.25);
     }
 
     .hero-card img {
@@ -290,6 +397,11 @@
       height: auto;
       display: block;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .hero-card:hover img {
+      transform: scale(1.05);
     }
 
     .hero-card-overlay {
@@ -333,25 +445,65 @@
     }
 
     .section-title {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 0 16px;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
     }
 
     .section-desc {
-      font-size: 0.95rem;
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
       color: var(--text-sub);
-      max-width: 30rem;
+      max-width: 36rem;
+      line-height: 1.8;
+      font-weight: 400;
     }
 
     .card {
       border-radius: var(--radius-lg);
       background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.88), var(--bg-section));
       border: 1px solid var(--border-soft);
-      padding: 18px;
+      padding: 24px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
     }
 
     .card img {
       border-radius: 15px;
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      object-fit: cover;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(78, 163, 255, 0.15);
+      border-color: rgba(148, 163, 255, 0.5);
     }
 
     /* About */
@@ -359,18 +511,27 @@
     .about-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 32px;
+      gap: 40px;
       align-items: center;
     }
 
+    .about-grid .card img {
+      width: 100%;
+      height: auto;
+      min-height: 350px;
+      object-fit: cover;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.3), rgba(5, 8, 22, 0.3));
+    }
+
     .about-list {
-      margin: 12px 0 0;
+      margin: 20px 0 0;
       padding: 0;
       list-style: none;
-      font-size: 0.92rem;
+      font-size: clamp(1rem, 1.1vw, 1.1rem);
       color: var(--text-sub);
       display: grid;
-      gap: 6px;
+      gap: 12px;
+      line-height: 1.8;
     }
 
     .about-list li::before {
@@ -384,13 +545,23 @@
     .usecase-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
+      gap: 24px;
     }
 
     .usecase-item {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .usecase-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.3), rgba(5, 8, 22, 0.3));
     }
 
     .usecase-label {
@@ -401,13 +572,17 @@
     }
 
     .usecase-title {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-main);
+      margin: 8px 0 4px;
     }
 
     .usecase-text {
-      font-size: 0.9rem;
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
       color: var(--text-sub);
+      line-height: 1.7;
     }
 
     /* Features */
@@ -415,22 +590,38 @@
     .features-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
 
     .feature-item {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       font-size: 0.88rem;
+      height: 100%;
+    }
+
+    .feature-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.3), rgba(5, 8, 22, 0.3));
     }
 
     .feature-title {
-      font-weight: 600;
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-main);
+      margin: 8px 0 4px;
     }
 
     .feature-text {
+      font-size: clamp(0.9rem, 1vw, 1rem);
       color: var(--text-sub);
+      line-height: 1.7;
     }
 
     /* Steps */
@@ -438,29 +629,49 @@
     .steps-wrapper {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 32px;
+      gap: 40px;
       align-items: center;
+    }
+
+    .steps-wrapper .card img {
+      width: 100%;
+      height: auto;
+      min-height: 350px;
+      object-fit: cover;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.3), rgba(5, 8, 22, 0.3));
     }
 
     .steps-list {
       list-style: none;
       padding: 0;
-      margin: 10px 0 0;
+      margin: 20px 0 0;
       display: grid;
-      gap: 12px;
-      font-size: 0.92rem;
+      gap: 16px;
+      font-size: clamp(1rem, 1.1vw, 1.1rem);
       color: var(--text-sub);
+      line-height: 1.8;
     }
 
     .steps-list li {
-      padding: 10px 12px;
-      border-radius: 14px;
+      padding: 18px 20px;
+      border-radius: 16px;
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(148, 163, 255, 0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .steps-list li:hover {
+      transform: translateX(4px);
+      border-color: rgba(148, 163, 255, 0.6);
+      background: rgba(15, 23, 42, 0.95);
     }
 
     .steps-list strong {
       color: var(--text-main);
+      font-size: 1.05em;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
     }
 
     /* CTA */
@@ -490,11 +701,21 @@
       position: relative;
     }
 
+    .cta-bg {
+      position: relative;
+      overflow: hidden;
+    }
+
     .cta-bg img {
       width: 100%;
-      height: 260px;
+      height: 300px;
       object-fit: cover;
       display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .cta-inner:hover .cta-bg img {
+      transform: scale(1.1);
     }
 
     .cta-overlay {
@@ -505,14 +726,19 @@
     }
 
     .cta-title {
-      font-size: 1.4rem;
-      font-weight: 600;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 0 16px;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
     }
 
     .cta-text {
-      font-size: 0.95rem;
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
       color: var(--text-sub);
-      max-width: 26rem;
+      max-width: 32rem;
+      line-height: 1.8;
     }
 
     .cta-actions {
@@ -698,6 +924,195 @@
       gap: 14px;
     }
 
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .slide-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Image display improvements */
+    img {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Image container improvements */
+    .card img,
+    .hero-card img,
+    .usecase-item img,
+    .feature-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .usecase-item,
+    .feature-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .usecase-item:hover,
+    .feature-item:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Hero visual animation */
+    .hero-visual {
+      animation: fadeIn 1s ease-out 0.4s both;
+    }
+
+    .hero-card {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Improved spacing */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    /* Enhanced typography hierarchy */
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    /* Enhanced buttons */
+    .btn-primary,
+    .btn-ghost {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
     /* Responsive */
 
     @media (max-width: 960px) {
@@ -708,7 +1123,18 @@
       }
 
       .hero {
-        padding-top: 56px;
+        padding: 80px 0 60px;
+        min-height: auto;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        margin-bottom: 24px;
+      }
+
+      .hero-title::before {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        filter: blur(15px);
       }
 
       .hero-visual {
@@ -722,6 +1148,14 @@
       .features-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .section-header {
+        margin-bottom: 40px;
+      }
     }
 
     @media (max-width: 720px) {
@@ -730,7 +1164,7 @@
       }
 
       .hero-grid {
-        gap: 26px;
+        gap: 32px;
       }
 
       .features-grid {
@@ -744,6 +1178,33 @@
       .footer-inner {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      .section-header {
+        margin-bottom: 32px;
+      }
+
+      .hero {
+        padding: 60px 0 40px;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 9vw, 3.5rem);
+        letter-spacing: 0.04em;
+        margin-bottom: 20px;
+      }
+
+      .hero-title::before {
+        font-size: clamp(2.2rem, 9vw, 3.5rem);
+        filter: blur(12px);
+      }
+
+      .hero-title::after {
+        height: 2px;
       }
     }
   </style>
@@ -763,6 +1224,7 @@
         <a href="#usecases" class="nav-link">適用情境</a>
         <a href="#features" class="nav-link">核心功能</a>
         <a href="#steps" class="nav-link">實作流程</a>
+        <a href="https://personal-website-8939.vercel.app" class="nav-link" style="font-size: 0.85rem; color: var(--text-sub);">← 返回個人網站</a>
         <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
           預約體驗／合作方案
         </button>
@@ -820,7 +1282,7 @@
     <section id="about">
       <div class="container">
         <div class="about-grid">
-          <div>
+          <div class="fade-in">
             <div class="section-header">
               <div class="section-eyebrow">關於這套架構</div>
               <h2 class="section-title">先把光打在「內在結構」，再談外在成果</h2>
@@ -835,7 +1297,7 @@
               <li>在高壓環境裡，維持情緒不失控、決策不崩盤的人際影響力。</li>
             </ul>
           </div>
-          <div class="card">
+          <div class="card scale-in">
             <img src="images/about.png" alt="抽象光束與階梯，象徵覺察與穩定成長">
           </div>
         </div>
@@ -845,7 +1307,7 @@
     <!-- Use cases -->
     <section id="usecases">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header fade-in">
           <div class="section-eyebrow">適用情境 Use Cases</div>
           <h2 class="section-title">這套系統特別為這三種人設計</h2>
           <p class="section-desc">
@@ -855,7 +1317,7 @@
         </div>
 
         <div class="usecase-grid">
-          <div class="usecase-item card">
+          <div class="usecase-item card fade-in">
             <img src="images/usecase-growth.png" alt="抽象嫩芽成長意象">
             <div class="usecase-label">Use Case 01</div>
             <div class="usecase-title">自我成長者：想活出更聚焦的自己</div>
@@ -865,7 +1327,7 @@
             </p>
           </div>
 
-          <div class="usecase-item card">
+          <div class="usecase-item card fade-in">
             <img src="images/usecase-leader.png" alt="抽象箭頭與階梯，象徵領導者帶出方向感">
             <div class="usecase-label">Use Case 02</div>
             <div class="usecase-title">主管／領導者：帶人又要面對上級</div>
@@ -875,7 +1337,7 @@
             </p>
           </div>
 
-          <div class="usecase-item card">
+          <div class="usecase-item card fade-in">
             <img src="images/usecase-stress.png" alt="抽象混亂線條收斂為穩定光圈，象徵從焦慮到平衡">
             <div class="usecase-label">Use Case 03</div>
             <div class="usecase-title">高壓與焦慮者：一直卡在同樣的循環</div>
@@ -891,7 +1353,7 @@
     <!-- Features -->
     <section id="features">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header fade-in">
           <div class="section-eyebrow">核心功能 Features</div>
           <h2 class="section-title">四個讓你「真的動起來」的關鍵模組</h2>
           <p class="section-desc">
@@ -901,7 +1363,7 @@
         </div>
 
         <div class="features-grid">
-          <div class="feature-item card">
+          <div class="feature-item card scale-in">
             <img src="images/feature-deep-question.png" alt="同心圓意象，象徵深入提問與核心覺察">
             <div class="feature-title">01 深度提問，釐清現況</div>
             <p class="feature-text">
@@ -910,7 +1372,7 @@
             </p>
           </div>
 
-          <div class="feature-item card">
+          <div class="feature-item card scale-in">
             <img src="images/feature-plan.png" alt="階梯式幾何方塊，象徵7/30/90天成長節奏">
             <div class="feature-title">02 7 / 30 / 90 天成長計畫</div>
             <p class="feature-text">
@@ -919,7 +1381,7 @@
             </p>
           </div>
 
-          <div class="feature-item card">
+          <div class="feature-item card scale-in">
             <img src="images/feature-communication.png" alt="兩組弧線流動交會，象徵對話與人際互動">
             <div class="feature-title">03 領導力與人際溝通</div>
             <p class="feature-text">
@@ -927,7 +1389,7 @@
             </p>
           </div>
 
-          <div class="feature-item card">
+          <div class="feature-item card scale-in">
             <img src="images/feature-emotion.png" alt="波浪線由混亂收斂為整齊，象徵情緒穩定">
             <div class="feature-title">04 情緒與壓力管理</div>
             <p class="feature-text">
@@ -943,7 +1405,7 @@
     <section id="steps">
       <div class="container">
         <div class="steps-wrapper">
-          <div>
+          <div class="slide-in-left">
             <div class="section-header">
               <div class="section-eyebrow">實作流程 Steps</div>
               <h2 class="section-title">三個步驟，建立你的「自我成長工作系統」</h2>
@@ -953,17 +1415,17 @@
               </p>
             </div>
             <ul class="steps-list">
-              <li>
+              <li class="fade-in">
                 <strong>Step 1｜覺察現在：深度盤點</strong><br />
                 透過引導式提問，釐清你目前的壓力源、角色負擔、
                 能量消耗與真正在乎的價值感。
               </li>
-              <li>
+              <li class="fade-in">
                 <strong>Step 2｜設計路徑：7 / 30 / 90 計畫</strong><br />
                 選出一個你現在最想處理的關鍵主題，
                 設計可行的小實驗與檢核點，避免又變成只寫在筆記裡。
               </li>
-              <li>
+              <li class="fade-in">
                 <strong>Step 3｜穩定運作：回顧與調整</strong><br />
                 每週一次簡短回顧，記錄你在哪些情境有新選擇、
                 哪些地方仍然卡關，調整系統而不是責怪自己。
@@ -971,7 +1433,7 @@
             </ul>
           </div>
 
-          <div class="card">
+          <div class="card slide-in-right">
             <img src="images/steps.png" alt="三步驟流程圖：圓形、方形與箭頭串連的抽象流程">
           </div>
         </div>
@@ -986,7 +1448,7 @@
             <img src="images/cta.png" alt="深藍到海軍藍漸層與光束，象徵前往更成熟穩定的自己">
             <div class="cta-overlay"></div>
           </div>
-          <div class="cta-content">
+          <div class="cta-content fade-in">
             <div class="section-eyebrow">Final Call to Action</div>
             <h2 class="cta-title">如果你準備好，不只是撐下去，而是長出新的自己</h2>
             <p class="cta-text">
@@ -1012,13 +1474,14 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-inner">
-        <div>© <span id="year"></span> 自我成長領導力 · Inner Clarity, Outer Impact</div>
-        <div class="footer-links">
-          <span>隱私權政策</span>
-          <span>合作與演講邀約</span>
+        <div class="footer-inner">
+          <div>© <span id="year"></span> 自我成長領導力 · Inner Clarity, Outer Impact</div>
+          <div class="footer-links">
+            <a href="https://personal-website-8939.vercel.app" style="color: var(--text-sub); transition: color 0.2s;">← 返回個人網站</a>
+            <span>隱私權政策</span>
+            <span>合作與演講邀約</span>
+          </div>
         </div>
-      </div>
     </div>
   </footer>
 </div>
@@ -1096,6 +1559,59 @@
 <script>
   // 動態年份
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 滾動動畫 - Intersection Observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // 對於列表項目，添加延遲動畫
+        if (entry.target.classList.contains('steps-list') || entry.target.tagName === 'LI') {
+          const items = entry.target.querySelectorAll('li') || [entry.target];
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('visible');
+            }, index * 150);
+          });
+        }
+      }
+    });
+  }, observerOptions);
+
+  // 觀察所有動畫元素
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // 特別處理 usecase 和 feature 卡片，添加延遲
+    const cards = document.querySelectorAll('.usecase-item, .feature-item');
+    cards.forEach((card, index) => {
+      observer.observe(card);
+      // 添加延遲類別
+      card.style.transitionDelay = `${index * 0.1}s`;
+    });
+  });
+
+  // 平滑滾動增強
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
 
   // 開啟報名表單模態框
   function openBookingModal() {
