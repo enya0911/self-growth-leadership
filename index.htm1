@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>自我成長領導力</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      background-color: #0a0f1f;
+      color: white;
+      line-height: 1.6;
+    }
+    section {
+      padding: 80px 10%;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    h1, h2 {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section>
+    <h1>自我成長領導力模組</h1>
+    <p>探索覺察、成長與領導的進化旅程。</p>
+    <img src="images/hero.png" alt="Hero image" />
+  </section>
+
+  <!-- About -->
+  <section>
+    <h2>關於 About</h2>
+    <img src="images/about.png" alt="About image" />
+  </section>
+
+</body>
+</html>
+
+
